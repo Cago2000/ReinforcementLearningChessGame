@@ -2,17 +2,21 @@
 #define TILE_H
 
 #include <string>
-#include <vector>
 #include "Piece.hpp"
 
 class Tile {
-public:
-    std::string name;
+private:
     Piece* occupiedBy;
-    std::vector<Piece*> whiteLookedAt;
-    std::vector<Piece*> blackLookedAt;
+    Position position;
+public:
 
     Tile();
+    Tile(Piece* occupiedBy, Position pos);
+
+    Piece* getPiece() const {return occupiedBy;}
+    void setPiece(Piece* piece){occupiedBy = piece;}
+    void removePiece(){occupiedBy = nullptr;}
+    bool isOccupied() const {return occupiedBy != nullptr;}
 };
 
 #endif // TILE_H

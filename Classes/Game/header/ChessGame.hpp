@@ -5,10 +5,11 @@
 
 class ChessGame {
 private:
-    Board board;
+    Board* board;
 
 public:
     ChessGame() : board() {}
+    Board* getBoard() const {return board;}
 };
 
 #endif // CHESSGAME_HPP
