@@ -5,27 +5,38 @@
 #include "../../Structs/Position.hpp"
 #include <vector>
 #include <string>
-#include "../../Utils/Utils.cpp"
+
+
+class Board;
 
 class Piece {
 protected:
     Color color;
     Position position;
     int value;
+    char symbol;
 
 public:
-    Piece(const Color color, const Position position, const int value)
-        : color(color), position(position), value(value) {}
-    std::vector<std::string> getMoves();
+    Piece(const Color color, const Position position, const int value, const char symbol)
+        : color(color), position(position), value(value), symbol(symbol) {}
+
+    virtual std::vector<std::string> getMoves() = 0;
+    virtual void makeMove(Board& board, const Position& target) = 0;
 
     Color getColor() const {
         return this->color;
     }
+
     Position getPosition() const{
         return this->position;
     }
+
     int getValue() const{
         return this->value;
+    }
+
+    char getSymbol() const {
+        return this->symbol;
     }
 };
 

@@ -7,9 +7,10 @@
 
 class Rook : public Piece {
 public:
-    Rook() : Piece() {}
-
+    Rook(const Color color, const Position position) : Piece(color, position, 5, 'R'){}
     std::vector<std::string> getMoves();
+
+    void makeMove(Board &board, const Position &target) override;
 };
 
 #endif // ROOK_HPP

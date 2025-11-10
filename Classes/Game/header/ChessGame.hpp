@@ -8,7 +8,7 @@ private:
     Board* board;
 
 public:
-    ChessGame() : board() {}
+    ChessGame() : board(new Board()) {}
     Board* getBoard() const {return board;}
 };
 

@@ -7,9 +7,11 @@
 
 class Empty : public Piece {
 public:
-    Empty() : Piece() {}
+    Empty(const Color color, const Position position) : Piece(color, position, 0, '.'){}
 
     std::vector<std::string> getMoves();
+
+    void makeMove(Board &board, const Position &target) override;
 };
 
 #endif // EMPTY_HPP

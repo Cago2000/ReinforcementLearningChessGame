@@ -1,8 +1,9 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include <string>
 #include "Piece.hpp"
+
+class Piece;
 
 class Tile {
 private:
@@ -10,8 +11,9 @@ private:
     Position position;
 public:
 
-    Tile();
-    Tile(Piece* occupiedBy, Position pos);
+    Tile(): occupiedBy(nullptr), position(0, 0) {}
+    explicit Tile(const Position position): occupiedBy(nullptr), position(position) {}
+    Tile(Piece* occupiedBy, const Position pos): occupiedBy(occupiedBy), position(pos) {}
 
     Piece* getPiece() const {return occupiedBy;}
     void setPiece(Piece* piece){occupiedBy = piece;}

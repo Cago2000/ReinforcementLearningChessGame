@@ -1,8 +1,8 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include <vector>
 #include "Tile.hpp"
+#include <vector>
 #include "Piece.hpp"
 
 class Board {
@@ -12,7 +12,10 @@ private:
 public:
     std::vector<std::vector<Tile>> tiles;
 
-    Board();
+    Board() {
+        initTiles();
+        initPieces();
+    }
 
     void initTiles();
 
@@ -24,7 +27,7 @@ public:
     bool isOccupied(int x, int y) const;
     bool isOccupied(Position pos) const;
 
-    void printBoard();
+    void printBoard() const;
 };
 
 #endif // BOARD_HPP

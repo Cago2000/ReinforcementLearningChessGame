@@ -1,0 +1,8 @@
+#ifndef REINFORCEMENTLEARNINGCHESSGAME_UTILS_HPP
+#define REINFORCEMENTLEARNINGCHESSGAME_UTILS_HPP
+
+#include <string>
+
+std::string coordToNotation(const int x, const int y);
+
+#endif //REINFORCEMENTLEARNINGCHESSGAME_UTILS_HPP

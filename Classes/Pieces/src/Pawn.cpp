@@ -1,6 +1,8 @@
-#include "header/Pawn.hpp"
-#include <cmath>
-
+#include "../header/Pawn.hpp"
+#include <iostream>
+#include <string>
+#include "../../Game/header/Board.hpp"
+#include "../../Game/header/Tile.hpp"
 
 std::vector<std::string> Pawn::getMoves() {
     std::vector<std::string> moves;
@@ -32,4 +34,39 @@ std::vector<std::string> Pawn::getMoves() {
         moves.push_back(Position(x + 1, y + direction).toNotation());
 
     return moves;
+}
+
+void Pawn::makeMove(Board& board, const Position& target) {
+    std::vector<std::string> legalMovesStr = getMoves();
+    bool isLegal = false;
+
+    for (const auto& moveStr : legalMovesStr) {
+        if (Position::fromNotation(moveStr) == target) {
+            isLegal = true;
+            break;
+        }
+    }
+
+    if (!isLegal) {
+        std::cout << "Illegal move for pawn!\n";
+        return;
+    }
+
+    if (target.x < 0 || target.x >= 8 || target.y < 0 || target.y >= 8)
+        return;
+
+    Tile& currentTile = board.getTile(position);
+    Tile& targetTile  = board.getTile(target);
+
+    if (targetTile.isOccupied()) {
+        const Piece* captured = nullptr;
+        captured = targetTile.getPiece();
+        if (captured->getColor() == color) {
+            return;
+        }
+    }
+
+    targetTile.setPiece(this);
+    currentTile.setPiece(nullptr);
+    position = target;
 }
